@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Davin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="timer-container">
+                <div id="timer">Waktu tersisa: 05:00</div>
+            </div>
+            <h1>Media Davin Demo</h1>
+        </header>
+        <main>
+            <section class="question-section">
+                <h2>Soal</h2>
+                <p>Pilih jawaban yang benar dari pertanyaan berikut:</p>
+                <p>Untuk mengurutkan data kita menggunkan sistem Stack and Queue. Ketika ada urutan Pertama kali masuk Pertama kali keluar, Maka sistem tersebut menggunakan sistem?</p>
+            </section>
+            <section class="answer-section">
+                <h2>Pilih Jawaban Anda</h2>
+                <form id="quizForm">
+                    <label>
+                        <input type="radio" name="answer" value="Soekarno">
+                        Stack
+                    </label>
+                    <label>
+                        <input type="radio" name="answer" value="Sukarno">
+                        Queue
+                    </label>
+                    <label>
+                        <input type="radio" name="answer" value="Joko Widodo">
+                        Sorting
+                    </label>
+                    <label>
+                        <input type="radio" name="answer" value="B.J. Habibie">
+                        Dequeue
+                    </label>
+                    <button type="submit">CEK SCORE</button>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Learning Media Davin</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Mencegah form dari pengiriman default
+            window.location.href = 'kirim.html'; // Arahkan ke halaman baru
+        });
+
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = "Waktu tersisa: " + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = 0;
+                    display.textContent = "Waktu Habis";
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var fiveMinutes = 60 * 5,
+                display = document.querySelector('#timer');
+            startTimer(fiveMinutes, display);
+        };
+    </script>
+</body>
+</html>
